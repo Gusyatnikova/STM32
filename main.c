@@ -66,8 +66,6 @@ static void MX_GPIO_Init(void);
 
 int main(void)
 {
-	uint8_t button;
-
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -100,15 +98,11 @@ int main(void)
   while (1)
   {
   /* USER CODE END WHILE */
- button = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
- if(button == 0)
- {
-	 HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
- }
- else
- {
-	 HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
- }
+	 //HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+	  HAL_Delay(500);
+	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_14);
+	  HAL_Delay(500);
   /* USER CODE BEGIN 3 */
 
   }
@@ -178,7 +172,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
 
   /*Configure GPIO pin : PC13 */
   GPIO_InitStruct.Pin = GPIO_PIN_13;
